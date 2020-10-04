@@ -30,3 +30,16 @@ If you have access to a linux docker environment, our team would love to docker 
 
 #### Propose of improvments
 Need to write error handling of controller's notify_all function, now there is nothing handles. If we get exception at notify_all must have a detailed error description, that must add to endpoint response
+
+#### Up for run
+```bash
+$ cd noveo-exercise
+(noveo-exercise)$ pip install -U pip pipenv
+(noveo-exercise)$ pipenv install --dev
+```
+
+docker
+```bash
+$ cd noveo-exercise
+(noveo-exercise)$ docker up
+```
