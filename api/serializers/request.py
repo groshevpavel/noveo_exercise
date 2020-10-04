@@ -2,7 +2,7 @@ from datetime import datetime
 
 from marshmallow import Schema, fields, validate, post_load
 
-from main.integrations.recepients import allowed_notification_recipients, NotificationRecipients
+from api.integrations.recepients import allowed_notification_recipients, NotificationRecipients
 
 
 class NotifyMessageSchema(Schema):

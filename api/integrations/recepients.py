@@ -1,11 +1,11 @@
 from enum import Enum
 
-from main.integrations import NotificationClientBase
-from main.integrations.email.client import EmailNotificationClient
-from main.integrations.http.client import HTTPNotificationClient
-from main.integrations.logging.client import LogNotificationClient
-from main.integrations.slack.client import SlackNotificationClient
-from main.integrations.sms.client import SmsNotificationClient
+from api.integrations import NotificationClientBase
+from api.integrations.email.client import EmailNotificationClient
+from api.integrations.http.client import HTTPNotificationClient
+from api.integrations.logging.client import LogNotificationClient
+from api.integrations.slack.client import SlackNotificationClient
+from api.integrations.sms.client import SmsNotificationClient
 
 
 class NotificationRecipients(Enum):

@@ -1,10 +1,10 @@
 import flask
 
-from main.controllers.notifications import notify_all
-from main.serializers.request import notification_request
-from main.serializers.response import notification_response
+from api.controllers.notifications import notify_all
+from api.serializers.request import notification_request
+from api.serializers.response import notification_response
 
-main_blueprint = flask.Blueprint('main', __name__)
+main_blueprint = flask.Blueprint('api', __name__)
 
 
 @main_blueprint.route("/notify", methods=["POST"])

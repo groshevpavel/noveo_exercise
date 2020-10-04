@@ -1,10 +1,8 @@
-import logging
-
-from main.integrations import NotificationClientBase
+from api.integrations import NotificationClientBase
 
 
-class LogNotificationClient(NotificationClientBase):
-    name_ = 'LOGGER'
+class SmsNotificationClient(NotificationClientBase):
+    name_ = 'SMS'
 
     def notify(self, notification_data: str):
         print(f'Call {self.name_} notification gate with text: "{notification_data}"')

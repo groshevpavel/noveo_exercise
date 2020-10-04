@@ -1,8 +1,8 @@
-from main.integrations import NotificationClientBase
+from api.integrations import NotificationClientBase
 
 
-class SmsNotificationClient(NotificationClientBase):
-    name_ = 'SMS'
+class HTTPNotificationClient(NotificationClientBase):
+    name_ = 'HTTP'
 
     def notify(self, notification_data: str):
         print(f'Call {self.name_} notification gate with text: "{notification_data}"')
