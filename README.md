@@ -23,6 +23,10 @@ One could spend a lot of time with it... But rest assured that we value your tim
 
 You should spend at least a few hours on this so the end result is meaningful enough to help us understand how you work.
 
-Once completed, share it with us by email or through a private GitHub repository with a full history available.
+Once completed, share it with uPRos by email or through a private GitHub repository with a full history available.
 
 If you have access to a linux docker environment, our team would love to docker build & run it.
+
+
+#### Propose of improvments
+Need to write error handling of controller's notify_all function, now there is nothing handles. If we get exception at notify_all must have a detailed error description, that must add to endpoint response
