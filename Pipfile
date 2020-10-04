@@ -9,6 +9,7 @@ pytest = "*"
 [packages]
 flask = "*"
 marshmallow = "<3"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

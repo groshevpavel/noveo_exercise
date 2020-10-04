@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  noveo-exercise:
+    build:
+      context: .
+    volumes:
+      - '.:/opt/noveo-exercise'
+    ports:
+      - "5000:5000"
+
+volumes:
+  pg-data: {}
