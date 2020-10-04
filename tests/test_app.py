@@ -1,44 +1,27 @@
-from copy import deepcopy
+import pytest
 
-from flask import Response
-from flask.testing import FlaskClient
-
-from tests import data
-from tests.conftest import isfloat
+from api.integrations import NotificationClientBase
 
 
-def test_serializers_fail(client: FlaskClient):
-    new_notify_request_data = deepcopy(data.notify_request_data)
-    new_notify_request_data['messages'][0]['recipients'].append('SLACK1')
-
-    response: Response = client.post('/notify', json=new_notify_request_data)
-
-    assert response.status_code == 400
-    assert response.json == {
-        'detail': {
-            'messages': {
-                '0': {
-                    'recipients': ['One or more of the choices you made was not acceptable.']
-                }
-            }
-        },
-        'error': 'VALIDATION_ERROR',
-        'message': 'VALIDATION_ERROR'
-    }
+class BlankNotificationClient(NotificationClientBase):
+    pass
 
 
-def test_notify_endpoint(client: FlaskClient):
-    response: Response = client.post('/notify', json=data.notify_request_data)
+class NoNameNotificationClient(NotificationClientBase):
+    def notify(self, notification_data: str) -> None:
+        pass
 
-    assert response.status_code == 200
-    response_body = response.json
 
-    for notification_result in response_body:
-        assert notification_result['text'] in ['Notification text #1', 'Notification text #2']
+def test_notification_client():
+    with pytest.raises(TypeError) as e:
+        client = BlankNotificationClient()
 
-        notification_ids = notification_result.get('notification_ids')
-        for notification_id in notification_ids:
-            prefix, suffix = notification_id.split('-')
+    assert e.value.args[0] == "Can't instantiate abstract class BlankNotificationClient with abstract methods notify"
 
-            assert prefix in ['LOGGER', 'HTTP', 'SMS', 'SLACK']
-            assert isfloat(suffix)
+
+def test_notification_client_name():
+    with pytest.raises(ValueError) as e:
+        client = NoNameNotificationClient()
+        id_ = client.id
+
+    assert e.value.args[0] == 'NotificationClient need to set it\'s name_ property'

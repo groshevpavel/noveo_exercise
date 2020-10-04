@@ -1,14 +1,14 @@
+from abc import abstractmethod, ABCMeta
 from datetime import datetime
 
 
-class NotificationClientMeta(type):
+class NotificationClientBase(metaclass=ABCMeta):
     name_ = None
 
-    def notify(cls, notification_data: str) -> None:
-        raise NotImplemented
+    @abstractmethod
+    def notify(self, notification_data: str) -> None:
+        pass
 
-
-class NotificationClientBase(metaclass=NotificationClientMeta):
     @property
     def id(self):
         if self.name_ is None:
