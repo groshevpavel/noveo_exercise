@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from marshmallow import Schema, fields, validate
+from marshmallow import Schema, fields, validate, post_load
 
-from main.integrations.recepients import allowed_notification_recipients
+from main.integrations.recepients import allowed_notification_recipients, NotificationRecipients
 
 
 class NotifyMessageSchema(Schema):
@@ -14,6 +14,12 @@ class NotifyMessageSchema(Schema):
         fields.String, required=True, allow_none=False, validate=validate.ContainsOnly(allowed_notification_recipients),
         description='List of notification handler names',
     )
+
+    @post_load
+    def remap_recipients_to_notificators(self, obj):
+        recipients = obj.pop('recipients')
+        obj['recipients'] = [getattr(NotificationRecipients, recipient).value for recipient in recipients]
+        return obj
 
 
 class NotificationRequestSchema(Schema):
