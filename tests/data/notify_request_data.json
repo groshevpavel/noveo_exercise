@@ -1,0 +1,17 @@
+{
+    "sender": "NOVEO Test",
+    "messages": [
+        {
+            "text": "Notification text #1",
+            "recipients": [
+                "LOG", "HTTP"
+            ]
+        },
+        {
+            "text": "Notification text #2",
+            "recipients": [
+                "LOG", "SMS", "SLACK"
+            ]
+        }
+    ]
+}
