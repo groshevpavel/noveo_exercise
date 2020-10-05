@@ -43,3 +43,26 @@ docker
 $ cd noveo-exercise
 (noveo-exercise)$ docker up
 ```
+
+#### Example request
+```bash
+curl --location --request POST 'http://127.0.0.1:5000/notify' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "sender": "NOVEO Test",
+    "messages": [
+        {
+            "text": "Notification text #1",
+            "recipients": [
+                "LOG", "HTTP"
+            ]
+        },
+        {
+            "text": "Notification text #2",
+            "recipients": [
+                "LOG", "SMS", "SLACK"
+            ]
+        }
+    ]
+}'
+```
